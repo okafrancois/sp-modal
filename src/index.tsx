@@ -6,7 +6,7 @@ interface SpModalProps {
     children: ReactNode;
     title?: string | ReactNode;
     visible: boolean;
-    closeHandler: () => void;
+    closeHandler: (e?: any) => void;
 }
 
 /**
@@ -14,14 +14,9 @@ interface SpModalProps {
  */
 
 const SpModal: React.FC<SpModalProps> = ({children, title, visible, closeHandler}) => {
-    let headerContent = null;
-
-    /**
-     @function
-     @param {string|ReactNode} content - The content to be formatted as a header. Can be a string or a ReactNode.
-     @returns {JSX.Element} - Returns a formatted header, either a string wrapped in a paragraph element or the original ReactNode.
-     */
-    const formatHeaderContent = (content:string | ReactNode) => content === 'string' ? <p>{content}</p> : content;
+    const formatHeaderContent = (content:string | ReactNode) => {
+        return typeof content === 'string' ? <p>{content}</p> : content;
+    }
     const outsideClickHandler = (e:any) => {
         if (e.target.classList.contains('hd-modal')) {
             closeHandler();
@@ -37,10 +32,6 @@ const SpModal: React.FC<SpModalProps> = ({children, title, visible, closeHandler
     useEffect(() => {
         document.addEventListener('keydown', escapeKeyHandler);
 
-        if (title) {
-            headerContent = formatHeaderContent(title);
-        }
-
         return () => {
             document.removeEventListener('keydown', escapeKeyHandler);
         }
@@ -55,7 +46,7 @@ const SpModal: React.FC<SpModalProps> = ({children, title, visible, closeHandler
                 {
                     title &&
                     <div className={"sp-modal__header"}>
-                        {headerContent}
+                        {formatHeaderContent(title)}
                     </div>
                 }
                 <div className="sp-modal__body">

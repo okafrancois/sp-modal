@@ -1,23 +1,45 @@
 {
   "name": "sp-modal",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "keywords": [],
-  "author": "",
+  "version": "1.1.1",
+  "description": "A lightweight modal component for React",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okafrancois/sp-modal.git"
+  },
+  "homepage": "https://github.com/okafrancois/sp-modal.git",
+  "author": "Berny Itoutou",
+  "keywords": [
+    "react",
+    "modal",
+    "component",
+    "hd",
+    "hd-modal"
+  ],
+  "main": "dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "dev": "vite"
   },
   "peerDependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "babel-core": "^6.26.3",
@@ -28,6 +50,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "^1.57.1",
+    "supa-table": "^1.1.1",
     "typescript": "^4.9.4"
   }
 }
